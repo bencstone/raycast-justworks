@@ -24,5 +24,6 @@ Every item has **Copy** (a one-line summary), **Open Justworks Calendar**, and *
 ## Notes
 
 - Data is only as good as the feed: PTO shows once it's approved in Justworks.
+- **Partial days show as full days.** Justworks records partial PTO as hours per day ("4h on Oct 2"), not as a morning or afternoon, and the calendar feed carries dates only. So someone taking a half day appears in Out Today just like someone off all day. Treat it as "has some time off today," not "unreachable all day."
 - "Back Mon" skips weekends but doesn't know about holidays.
 - Built and maintained locally (`npm install && npx ray develop`). Not published to the Raycast Store.
