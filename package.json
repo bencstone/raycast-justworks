@@ -1,0 +1,115 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "justworks",
+  "title": "Justworks",
+  "description": "Who's out, upcoming holidays, paydays, birthdays and anniversaries — read from your personal Justworks calendar feed.",
+  "icon": "icon.png",
+  "author": "bencstone",
+  "categories": [
+    "Productivity"
+  ],
+  "license": "MIT",
+  "platforms": [
+    "macOS"
+  ],
+  "commands": [
+    {
+      "name": "overview",
+      "title": "Justworks Overview",
+      "subtitle": "Justworks",
+      "description": "Who's out today, the next holiday, your next payday, and upcoming celebrations at a glance.",
+      "mode": "view",
+      "keywords": [
+        "today",
+        "out",
+        "pto",
+        "holiday",
+        "payday"
+      ]
+    },
+    {
+      "name": "whos-out",
+      "title": "Time Off",
+      "subtitle": "Justworks",
+      "description": "Everyone on time off today and in the coming weeks.",
+      "mode": "view",
+      "keywords": [
+        "pto",
+        "time off",
+        "vacation",
+        "ooo"
+      ]
+    },
+    {
+      "name": "holidays",
+      "title": "Company Holidays",
+      "subtitle": "Justworks",
+      "description": "The company holiday list with a countdown to the next one.",
+      "mode": "view",
+      "keywords": [
+        "holiday",
+        "day off"
+      ]
+    },
+    {
+      "name": "paydays",
+      "title": "Paydays",
+      "subtitle": "Justworks",
+      "description": "Your next payday and the upcoming pay schedule.",
+      "mode": "view",
+      "keywords": [
+        "pay",
+        "payroll",
+        "paycheck"
+      ]
+    },
+    {
+      "name": "celebrations",
+      "title": "Birthdays & Anniversaries",
+      "subtitle": "Justworks",
+      "description": "Upcoming teammate birthdays and work anniversaries.",
+      "mode": "view",
+      "keywords": [
+        "birthday",
+        "anniversary",
+        "celebration"
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "feedUrl",
+      "title": "iCal Subscription Link",
+      "description": "Your personal Justworks calendar feed. In Justworks: Calendar → Filters → Your subscription → Create iCal subscription link. The link is personal — don't share it.",
+      "type": "password",
+      "required": true,
+      "placeholder": "https://api.payroll.justworks.com/unified-calendar/feed/ics_…"
+    },
+    {
+      "name": "companyUrl",
+      "title": "Justworks Calendar URL",
+      "description": "Where the Open in Justworks action goes.",
+      "type": "textfield",
+      "required": false,
+      "default": "https://payroll.justworks.com/calendar"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.104.6",
+    "@raycast/utils": "^2.2.2"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.1.1",
+    "@types/node": "^25.2.3",
+    "@types/react": "19.0.10",
+    "eslint": "^9.39.3",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint"
+  }
+}
