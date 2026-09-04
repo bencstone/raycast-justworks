@@ -25,7 +25,7 @@ export class FeedError extends Error {
   }
 }
 
-async function fetchFeed(url: string): Promise<JwEvent[]> {
+export async function fetchFeed(url: string): Promise<JwEvent[]> {
   if (!url)
     throw new FeedError(
       "No iCal link configured",

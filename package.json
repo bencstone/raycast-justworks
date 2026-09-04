@@ -28,6 +28,21 @@
       ]
     },
     {
+      "name": "out-today",
+      "title": "Out Today",
+      "subtitle": "Justworks",
+      "description": "Shows who is on PTO today right in the command list. Refreshes hourly in the background; press Enter to refresh now.",
+      "mode": "no-view",
+      "interval": "1h",
+      "keywords": [
+        "pto",
+        "ooo",
+        "who",
+        "out",
+        "time off"
+      ]
+    },
+    {
       "name": "whos-out",
       "title": "Time Off",
       "subtitle": "Justworks",

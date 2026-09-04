@@ -12,6 +12,7 @@ The link is personal — it's tied to your Justworks account and shows what you'
 
 ## Commands
 
+- **Out Today** — the one to glance at before you ping someone. It shows today's PTO names as its subtitle right in the Raycast command list (like a now-playing command), refreshes hourly in the background, and **Enter** refreshes it now and shows who's back when.
 - **Justworks Overview** — who's out today, the next holiday, your next payday, celebrations in the next two weeks.
 - **Time Off** — everyone's time off, grouped by today / tomorrow / this week / next week / later, with a "back Mon" hint.
 - **Company Holidays** — the holiday list with a countdown to the next one.
