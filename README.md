@@ -21,6 +21,10 @@ The link is personal — it's tied to your Justworks account and shows what you'
 
 Every item has **Copy** (a one-line summary), **Open Justworks Calendar**, and **⌘R** to refresh. Data is cached between runs and refreshed in the background; Justworks regenerates the feed roughly daily.
 
+## Ask it in Raycast AI
+
+The extension is also an AI Extension: in AI Chat or Quick AI, address it as `@justworks` — "@justworks who's out today", "@justworks when is the next holiday", "@justworks when is Karissa out next", "@justworks any anniversaries this month". Five read-only tools back this (who's out on a day, search time off, holidays, paydays, celebrations); nothing writes to Justworks. You can also add it to an AI Command or a Preset so it's always in scope.
+
 ## Notes
 
 - Data is only as good as the feed: PTO shows once it's approved in Justworks.

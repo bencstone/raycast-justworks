@@ -128,5 +128,139 @@
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint"
+  },
+  "tools": [
+    {
+      "name": "get-whos-out",
+      "title": "Who Is Out",
+      "description": "Who is on approved time off on a given day (default today) and when each person is back. Use for who is out / off / on PTO / on vacation today, tomorrow, or on a specific date."
+    },
+    {
+      "name": "search-time-off",
+      "title": "Search Time Off",
+      "description": "Upcoming or past approved time off, optionally for one person or within a date range. Use for when someone is out next, who is out next week, or whether anyone is off in a given month."
+    },
+    {
+      "name": "get-holidays",
+      "title": "Get Holidays",
+      "description": "Company holidays with the next one first and a countdown. Use for the next holiday, whether a date is a holiday, or the holiday list."
+    },
+    {
+      "name": "get-paydays",
+      "title": "Get Paydays",
+      "description": "The user’s upcoming paydays and off-cycle payment runs with a countdown to the next one."
+    },
+    {
+      "name": "get-celebrations",
+      "title": "Get Celebrations",
+      "description": "Upcoming teammate birthdays and work anniversaries, optionally filtered by type or person."
+    }
+  ],
+  "ai": {
+    "instructions": "You answer questions about the user’s company calendar from Justworks: who is on time off, company holidays, the user’s paydays, and teammate birthdays and work anniversaries. All data is read-only and comes from the user’s personal Justworks calendar feed.\n\nDates from tools are ISO YYYY-MM-DD in the user’s local timezone. When you answer, use natural forms like “Friday, Sep 5” and say how many days away something is when that helps.\n\nFor time off, always mention when the person is back (the backOn field). Partial days are not distinguishable from full days in the feed — if asked whether someone is out all day, say the feed only shows that they have time off that day.\n\nOnly report what the tools return. If a person or date is not in the results, say so rather than guessing. Time off appears only once approved in Justworks.\n\nUse get-whos-out for a single day, search-time-off for a person or a range, get-holidays for holidays, get-paydays for pay dates, get-celebrations for birthdays and anniversaries. Combine tools when a question spans them (e.g. “what’s coming up this month”).",
+    "evals": [
+      {
+        "input": "@justworks who is out today?",
+        "expected": [
+          {
+            "callsTool": "get-whos-out"
+          }
+        ],
+        "mocks": {
+          "get-whos-out": {
+            "date": "2026-09-04",
+            "dayLabel": "Friday, Sep 4",
+            "count": 1,
+            "out": [
+              {
+                "person": "Sean Cumiskey",
+                "from": "2026-09-01",
+                "to": "2026-09-04",
+                "backOn": "2026-09-07",
+                "backOnLabel": "Monday, Sep 7"
+              }
+            ],
+            "note": ""
+          }
+        }
+      },
+      {
+        "input": "@justworks when is the next company holiday?",
+        "expected": [
+          {
+            "callsTool": "get-holidays"
+          }
+        ],
+        "mocks": {
+          "get-holidays": {
+            "today": "2026-09-04",
+            "next": {
+              "name": "Labor Day",
+              "date": "2026-09-07",
+              "dayLabel": "Monday, Sep 7",
+              "daysAway": 3
+            },
+            "holidays": []
+          }
+        }
+      },
+      {
+        "input": "@justworks when is Karissa out next?",
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-time-off",
+              "arguments": {
+                "person": {
+                  "includes": "Karissa"
+                }
+              }
+            }
+          }
+        ],
+        "mocks": {
+          "search-time-off": {
+            "window": {
+              "from": "2026-09-04",
+              "to": "2026-11-03"
+            },
+            "person": "Karissa",
+            "count": 1,
+            "items": [
+              {
+                "person": "Karissa Dingus",
+                "from": "2026-09-08",
+                "to": "2026-09-09",
+                "backOn": "2026-09-10"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "input": "@justworks any birthdays this month?",
+        "expected": [
+          {
+            "callsTool": {
+              "name": "get-celebrations",
+              "arguments": {
+                "type": "birthday"
+              }
+            }
+          }
+        ],
+        "mocks": {
+          "get-celebrations": {
+            "today": "2026-09-04",
+            "window": {
+              "from": "2026-09-04",
+              "to": "2026-10-04"
+            },
+            "count": 0,
+            "items": []
+          }
+        }
+      }
+    ]
   }
 }
